@@ -1,5 +1,5 @@
 {
     "build": {
-        "cmd": "npx webpack --config ./webpack.config.js -o ./out --mode production"
+        "cmd": "npx webpack --config ./azion/webpack.config.js -o ./dist --mode production"
     }
 }
