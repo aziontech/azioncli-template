@@ -1,2 +1,2 @@
 # azioncli-template
-Templates used by Azioncli from JAMstack Support
+Templates used by Azioncli for JAMstack Support
