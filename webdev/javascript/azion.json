@@ -1,0 +1,9 @@
+{
+    "name":"",
+    "language":"javascript",
+    "env":"production",
+    "function_file":"./out/main.js",
+    "cache": {
+          "purge_on_publish":"true"
+     }
+    }

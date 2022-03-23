@@ -1,0 +1,5 @@
+{
+    "build": {
+        "cmd": "npx webpack --config ./webpack.config.js -o ./out --mode production"
+    }
+}
