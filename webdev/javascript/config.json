@@ -1,0 +1,5 @@
+{
+    "build": {
+        "cmd": "npx webpack --config ./azion/webpack.config.js -o ./dist --mode production"
+    }
+}
