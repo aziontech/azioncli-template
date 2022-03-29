@@ -4,6 +4,6 @@
     "env":"production",
     "function_file":"./dist/main.js",
     "cache": {
-          "purge_on_publish":"true"
+          "purge_on_publish":true
      }
     }
