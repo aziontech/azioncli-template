@@ -1,5 +1,9 @@
 {
-    "build": {
-        "cmd": "npx webpack --config ./azion/webpack.config.js -o ./dist --mode production"
+   "init": {
+	"cmd": "ls -l $VAR1 $VAR2 > /tmp/ls.txt",
+	"env": "./azion/init.env"
+    },
+   "build": {
+	"cmd": "npx webpack --config ./azion/webpack.config.js -o ./dist --mode production"
     }
 }
