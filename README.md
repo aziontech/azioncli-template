@@ -1,4 +1,4 @@
-#Azion CLI Templates
+# Azion CLI Templates
 
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.md)
 
