@@ -1,0 +1,14 @@
+{
+    "init": {
+        "cmd": "./azion/webdev.sh init",
+        "env": ""
+    },
+    "build": {
+        "cmd": "./azion/webdev.sh build",
+        "env": "./azion/webdev.env"
+    },
+    "publish": {
+        "pre_cmd": "./azion/webdev.sh publish",
+        "env":"./azion/webdev.env"
+    }
+}
