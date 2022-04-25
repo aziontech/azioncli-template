@@ -22,13 +22,13 @@
 # Note 2: The azion.json used by flareact4azion isn't the same that is used by the azioncli.
 
 check_flareact4azion() {
-	if ! command -v flareact4azion 2>&1 >/dev/null; then
-		mkdir -p ./azion
+    if ! command -v flareact4azion 2>&1 >/dev/null; then
+        mkdir -p ./azion
         if ! install_flareact4azion; then
             echo "Failed to install flareact4azion"
             return 1
         fi
-	fi
+    fi
 }
 
 install_flareact4azion() {
@@ -48,7 +48,7 @@ required_envvars() {
 }
 
 check_envvars() {
-	return_value=0
+    return_value=0
     for var in $(required_envvars); do
         # Use eval since we want to get the value of the variable
         eval "VAR=\$$var"
@@ -95,9 +95,9 @@ update_deploy_script() {
 
 help() {
     cat <<EOF
-Usage: $0 init | build | publish
-Required tools: $(required_tools | sed 's/ /\n  - /g;s/^/\n  - /g')
-Required environment variables: $(required_envvars | sed 's/ /\n  - /g;s/^/\n  - /g')
+    Usage: $0 init | build | publish
+    Required tools: $(required_tools | sed 's/ /\n  - /g;s/^/\n  - /g')
+    Required environment variables: $(required_envvars | sed 's/ /\n  - /g;s/^/\n  - /g')
 EOF
 }
 
@@ -107,24 +107,24 @@ if [ $# -lt 1 ]; then
 fi
 
 case "$1" in
-	init )
-		check_tools || exit $?
-		check_flareact4azion || exit $?
+    init )
+        check_tools || exit $?
+        check_flareact4azion || exit $?
 
         update_build_script
         update_deploy_script
-		cp ./azion/flareact4azion.json azion.json
-		mkdir -p public ;;
+        cp ./azion/flareact4azion.json azion.json
+        mkdir -p public ;;
 
     build )
-		check_tools || exit $?
-		check_envvars || exit $?
+        check_tools || exit $?
+        check_envvars || exit $?
 
         flareact4azion build ;;
 
     publish )
-		check_tools || exit $?
-		check_envvars || exit $?
+        check_tools || exit $?
+        check_envvars || exit $?
 
         flareact4azion publish ;;
 esac
