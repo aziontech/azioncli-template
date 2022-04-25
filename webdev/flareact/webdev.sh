@@ -117,13 +117,11 @@ case "$1" in
         mkdir -p public ;;
 
     build )
-        check_tools || exit $?
         check_envvars || exit $?
 
         flareact4azion build ;;
 
     publish )
-        check_tools || exit $?
         check_envvars || exit $?
 
         flareact4azion publish ;;
