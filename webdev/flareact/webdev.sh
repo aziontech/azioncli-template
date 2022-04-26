@@ -28,11 +28,13 @@ check_flareact4azion() {
             echo "Failed to install flareact4azion"
             return 1
         fi
+    else
+        echo "flareact4azion already installed"
     fi
 }
 
 install_flareact4azion() {
-    echo "Installing flareact4azion:"
+    echo "Installing flareact4azion"
     tmpdir=$(mktemp -d)
     git clone git@github.com:aziontech/flareact4azion.git  "$tmpdir"
     cd "$tmpdir"
@@ -118,11 +120,13 @@ case "$1" in
 
     build )
         check_envvars || exit $?
+        check_flareact4azion || exit $?
 
         flareact4azion build ;;
 
     publish )
         check_envvars || exit $?
+        check_flareact4azion || exit $?
 
         flareact4azion publish ;;
 esac
