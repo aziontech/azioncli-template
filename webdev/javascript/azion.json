@@ -1,9 +1,19 @@
 {
-    "name":"",
-    "language":"javascript",
-    "env":"production",
-    "function_file":"./dist/main.js",
-    "cache": {
-          "purge_on_publish":true
-     }
+    "name": "",
+    "env": "production",
+    "function": {
+        "name": "__DEFAULT__",
+        "file": "./worker/function.js",
+        "args": "./args.json",
+        "language":"javascript"
+    },
+    "application": {
+        "name": "__DEFAULT__"
+    },
+    "domain": {
+        "name": "__DEFAULT__"
+    },
+    "rt-purge": {
+        "purge_on_publish": true
     }
+}
