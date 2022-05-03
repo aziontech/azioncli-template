@@ -9,9 +9,8 @@
 # - npm
 # - git
 #
-# Enviromental variables:
+# Environment variables:
 # - AWS_ACCESS_KEY_ID
-# - AWS_USER
 # - AWS_SECRET_ACCESS_KEY
 # - AZION_SECRET
 # - AZION_ID
@@ -46,7 +45,7 @@ install_flareact4azion() {
 }
 
 required_envvars() {
-    echo AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_USER AZION_SECRET AZION_ID
+    echo AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AZION_SECRET AZION_ID
 }
 
 check_envvars() {
