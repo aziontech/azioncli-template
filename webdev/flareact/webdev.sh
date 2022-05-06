@@ -2,7 +2,7 @@
 #
 # Wrapper to Flareact4azion
 #
-# Requirements
+# Requirements:
 #
 # Tools:
 # - jq
