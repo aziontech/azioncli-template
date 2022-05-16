@@ -12,13 +12,8 @@
 # Environment variables:
 # - AWS_ACCESS_KEY_ID
 # - AWS_SECRET_ACCESS_KEY
-# - AZION_SECRET
 # - AZION_ID
-#
-# Note 1: Flareact4azion needs that the configuration file (azion.json) stayed at the project home dir:
-#       cp ./azion/flareact4azion.json to <project_dir>/azion.json
-#
-# Note 2: The azion.json used by flareact4azion isn't the same that is used by the azioncli.
+# - AZION_SECRET
 
 check_flareact4azion() {
     if ! command -v flareact4azion 2>&1 >/dev/null; then
@@ -37,15 +32,16 @@ install_flareact4azion() {
     tmpdir=$(mktemp -d)
     git clone git@github.com:aziontech/flareact4azion.git  "$tmpdir"
     cd "$tmpdir"
-    npm install
-    npm run build
-    npm install -g --production
+    if ! (npm install && npm run build && npm install -g --production); then
+        echo "Failed to install flareact4azion"
+        exit 1;
+    fi
     cd -
-    echo "flareact4azion installed"
+    echo "Installed flareact4azion successfully"
 }
 
 required_envvars() {
-    echo AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AZION_SECRET AZION_ID
+    echo AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AZION_ID AZION_SECRET
 }
 
 check_envvars() {
@@ -114,18 +110,18 @@ case "$1" in
 
         update_build_script
         update_deploy_script
-        cp ./azion/flareact4azion.json azion.json
         mkdir -p public ;;
 
     build )
         check_envvars || exit $?
         check_flareact4azion || exit $?
 
-        flareact4azion build ;;
+        flareact4azion build --config ./azion/flareact4azion.json;;
 
     publish )
         check_envvars || exit $?
         check_flareact4azion || exit $?
 
-        flareact4azion publish ;;
+        # Publish only assets
+        flareact4azion publish -s --config ./azion/flareact4azion.json;;
 esac
