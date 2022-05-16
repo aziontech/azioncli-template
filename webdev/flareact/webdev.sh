@@ -74,7 +74,7 @@ check_tools() {
 
 update_build_script() {
     tmpfile=$(mktemp)
-    if ! jq '.scripts.build=$v' --arg v 'flareact build && ./azion/webdev.sh build' >"$tmpfile" <package.json; then
+    if ! jq '.scripts.build=$v' --arg v 'azioncli build' >"$tmpfile" <package.json; then
         echo "Failed to update package.json build script"
         return 1
     fi
@@ -83,7 +83,7 @@ update_build_script() {
 
 update_deploy_script() {
     tmpfile=$(mktemp)
-    if ! jq '.scripts.deploy=$v' --arg v 'flareact build && ./azion/webdev.sh publish' >"$tmpfile" <package.json; then
+    if ! jq '.scripts.deploy=$v' --arg v 'azioncli publish' >"$tmpfile" <package.json; then
         echo "Failed to update package.json deploy script"
         return 1
     fi
