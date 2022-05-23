@@ -1,6 +1,4 @@
 {
     "init": {},
-    "build": {
-        "cmd": "npx --package=webpack@5.72.0 --package=webpack-cli@4.9.2 -- webpack --config ./azion/webpack.config.js -o ./dist --mode production"
-    }
+    "build": {}
 }
