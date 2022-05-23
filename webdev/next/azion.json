@@ -1,0 +1,19 @@
+{
+    "name": "__DEFAULT__",
+    "env": "production",
+    "function": {
+        "name": "__DEFAULT__",
+        "file": "./worker/function.js",
+        "args": "./args.json",
+        "language":"javascript"
+    },
+    "application": {
+        "name": "__DEFAULT__"
+    },
+    "domain": {
+        "name": "__DEFAULT__"
+    },
+    "rt-purge": {
+        "purge_on_publish": true
+    }
+}
