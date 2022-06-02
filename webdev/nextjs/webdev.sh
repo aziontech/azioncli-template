@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Wrapper to Flareact4azion
+# Wrapper to azion-framework-adapter
 #
 # Requirements:
 #
@@ -15,29 +15,29 @@
 # - AZION_ID
 # - AZION_SECRET
 
-check_flareact4azion() {
-    if ! command -v flareact4azion 2>&1 >/dev/null; then
+check_azion_framework_adapter() {
+    if ! command -v azion-framework-adapter 2>&1 >/dev/null; then
         mkdir -p ./azion
-        if ! install_flareact4azion; then
-            echo "Failed to install flareact4azion"
+        if ! install_azion_framework_adapter; then
+            echo "Failed to install azion-framework-adapter"
             return 1
         fi
     else
-        echo "flareact4azion already installed"
+        echo "azion-framework-adapter already installed"
     fi
 }
 
-install_flareact4azion() {
-    echo "Installing flareact4azion"
+install_azion_framework_adapter() {
+    echo "Installing azion-framework-adapter"
     tmpdir=$(mktemp -d)
-    git clone git@github.com:aziontech/flareact4azion.git  "$tmpdir"
+    git clone git@github.com:aziontech/azion-framework-adapter.git  "$tmpdir"
     cd "$tmpdir"
     if ! (npm install && npm run build && npm install -g --production); then
-        echo "Failed to install flareact4azion"
+        echo "Failed to install azion-framework-adapter"
         exit 1;
     fi
     cd -
-    echo "Installed flareact4azion successfully"
+    echo "Installed azion-framework-adapter successfully"
 }
 
 required_envvars() {
@@ -114,25 +114,25 @@ fi
 case "$1" in
     init )
         check_tools || exit $?
-        check_flareact4azion || exit $?
+        check_azion_framework_adapter || exit $?
         install_cells_site_template
         update_deploy_script;;
 
     build )
         check_envvars || exit $?
-        check_flareact4azion || exit $?
+        check_azion_framework_adapter || exit $?
 
         cd azion/cells-site-template || exit $?
-        flareact4azion build --config ../flareact4azion.json      \
+        azion-framework-adapter build --config ../kv.json \
                              --static-site --assets-dir ../../out;;
 
     publish )
         check_envvars || exit $?
-        check_flareact4azion || exit $?
+        check_azion_framework_adapter || exit $?
 
         cd azion/cells-site-template || exit $?
         # Publish only assets
-        flareact4azion publish --config ../flareact4azion.json      \
+        azion-framework-adapter publish --config ../kv.json \
                                --only-assets --assets-dir ../../out
         echo "{}" > ./args.json;;
 esac
