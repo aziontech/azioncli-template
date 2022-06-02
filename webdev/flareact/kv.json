@@ -3,9 +3,5 @@
     "bucket": "azion-cells-dev",
     "region": "us-east-1",
     "path": "__static_content"
-  },
-  "azion": {
-    "function_name": "MyFunction",
-    "end_point": "https://api.azion.net"
   }
 }

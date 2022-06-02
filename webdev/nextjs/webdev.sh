@@ -12,8 +12,6 @@
 # Environment variables:
 # - AWS_ACCESS_KEY_ID
 # - AWS_SECRET_ACCESS_KEY
-# - AZION_ID
-# - AZION_SECRET
 
 check_azion_framework_adapter() {
     if ! command -v azion-framework-adapter 2>&1 >/dev/null; then
@@ -41,7 +39,7 @@ install_azion_framework_adapter() {
 }
 
 required_envvars() {
-    echo AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AZION_ID AZION_SECRET
+    echo AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
 }
 
 check_envvars() {
