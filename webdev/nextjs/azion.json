@@ -3,8 +3,8 @@
     "env": "production",
     "function": {
         "name": "__DEFAULT__",
-        "file": "./worker/function.js",
-        "args": "./args.json"
+        "file": "./azion/cells-site-template/worker/function.js",
+        "args": "./azion/cells-site-template/args.json",
     },
     "application": {
         "name": "__DEFAULT__"
