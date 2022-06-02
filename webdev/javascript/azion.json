@@ -4,8 +4,7 @@
     "function": {
         "name": "__DEFAULT__",
         "file": "./worker/function.js",
-        "args": "./args.json",
-        "language":"javascript"
+        "args": "./args.json"
     },
     "application": {
         "name": "__DEFAULT__"
