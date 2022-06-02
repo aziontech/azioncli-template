@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Wrapper to Flareact4azion
+# Wrapper to azion-framework-adapter
 #
 # Requirements:
 #
@@ -15,29 +15,29 @@
 # - AZION_ID
 # - AZION_SECRET
 
-check_flareact4azion() {
-    if ! command -v flareact4azion 2>&1 >/dev/null; then
+check_azion_framework_adapter() {
+    if ! command -v azion-framework-adapter 2>&1 >/dev/null; then
         mkdir -p ./azion
-        if ! install_flareact4azion; then
-            echo "Failed to install flareact4azion"
+        if ! install_azion_framework_adapter; then
+            echo "Failed to install azion-framework-adapter"
             return 1
         fi
     else
-        echo "flareact4azion already installed"
+        echo "azion-framework-adapter already installed"
     fi
 }
 
-install_flareact4azion() {
-    echo "Installing flareact4azion"
+install_azion_framework_adapter() {
+    echo "Installing azion-framework-adapter"
     tmpdir=$(mktemp -d)
-    git clone git@github.com:aziontech/flareact4azion.git  "$tmpdir"
+    git clone git@github.com:aziontech/azion-framework-adapter.git  "$tmpdir"
     cd "$tmpdir"
     if ! (npm install && npm run build && npm install -g --production); then
-        echo "Failed to install flareact4azion"
+        echo "Failed to install azion-framework-adapter"
         exit 1;
     fi
     cd -
-    echo "Installed flareact4azion successfully"
+    echo "Installed azion-framework-adapter successfully"
 }
 
 required_envvars() {
@@ -106,7 +106,7 @@ fi
 case "$1" in
     init )
         check_tools || exit $?
-        check_flareact4azion || exit $?
+        check_azion_framework_adapter || exit $?
 
         update_build_script
         update_deploy_script
@@ -114,14 +114,14 @@ case "$1" in
 
     build )
         check_envvars || exit $?
-        check_flareact4azion || exit $?
+        check_azion_framework_adapter || exit $?
 
-        flareact4azion build --config ./azion/flareact4azion.json;;
+        azion-framework-adapter build --config ./azion/kv.json;;
 
     publish )
         check_envvars || exit $?
-        check_flareact4azion || exit $?
+        check_azion_framework_adapter || exit $?
 
         # Publish only assets
-        flareact4azion publish -s --config ./azion/flareact4azion.json;;
+        azion-framework-adapter publish -s --config ./azion/kv.json;;
 esac
