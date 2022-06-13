@@ -4,7 +4,7 @@ module.exports = {
     target: "webworker",
     entry: "./index.js",
     output: {
-        filename: 'main.js',
+        filename: 'function.js',
         path: path.resolve(__dirname, 'dist'),
       },
     mode: "production",
