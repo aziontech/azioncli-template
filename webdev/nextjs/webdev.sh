@@ -28,7 +28,7 @@ check_azion_framework_adapter() {
 install_azion_framework_adapter() {
     echo "Installing azion-framework-adapter"
     tmpdir=$(mktemp -d)
-    git clone git@github.com:aziontech/azion-framework-adapter.git  "$tmpdir"
+    git clone https://github.com/aziontech/azion-framework-adapter.git  "$tmpdir"
     cd "$tmpdir"
     if ! (npm install && npm run build && npm install -g --production); then
         echo "Failed to install azion-framework-adapter"
@@ -82,7 +82,7 @@ update_deploy_script() {
 install_cells_site_template() {
     if ! (
         cd azion || exit $?
-        git clone git@github.com:aziontech/cells-site-template.git
+        git clone https://github.com/aziontech/cells-site-template.git
     ); then
         echo "Failed to clone cells-site-template";
         return 1
