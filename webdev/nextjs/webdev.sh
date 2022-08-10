@@ -122,7 +122,7 @@ case "$1" in
 
         cd azion/cells-site-template || exit $?
         azion-framework-adapter build --config ../kv.json \
-                             --static-site --assets-dir ../../out;;
+                             --static-site --assets-dir ../../out || exit $?;;
 
     publish )
         check_envvars || exit $?
@@ -131,6 +131,6 @@ case "$1" in
         cd azion/cells-site-template || exit $?
         # Publish only assets
         azion-framework-adapter publish --config ../kv.json \
-                               --only-assets --assets-dir ../../out
+                               --only-assets --assets-dir ../../out || exit $?
         echo "{}" > ./args.json;;
 esac
