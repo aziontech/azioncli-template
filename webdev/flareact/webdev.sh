@@ -113,13 +113,14 @@ case "$1" in
     build )
         check_envvars || exit $?
         check_azion_framework_adapter || exit $?
+        echo "{}" > ./args.json
 
-        azion-framework-adapter build --config ./azion/kv.json;;
+        azion-framework-adapter build --config ./azion/kv.json || exit $?;;
 
     publish )
         check_envvars || exit $?
         check_azion_framework_adapter || exit $?
 
         # Publish only assets
-        azion-framework-adapter publish -s --config ./azion/kv.json;;
+        azion-framework-adapter publish -s --config ./azion/kv.json || exit $?;;
 esac
