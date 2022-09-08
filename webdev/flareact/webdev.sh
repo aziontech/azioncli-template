@@ -72,7 +72,7 @@ check_tools() {
 
 update_build_script() {
     tmpfile=$(mktemp)
-    if ! jq '.scripts.build=$v' --arg v 'azioncli build' >"$tmpfile" <package.json; then
+    if ! jq '.scripts.build=$v' --arg v 'azioncli webapp build' >"$tmpfile" <package.json; then
         echo "Failed to update package.json build script"
         return 1
     fi
@@ -81,7 +81,7 @@ update_build_script() {
 
 update_deploy_script() {
     tmpfile=$(mktemp)
-    if ! jq '.scripts.deploy=$v' --arg v 'azioncli publish' >"$tmpfile" <package.json; then
+    if ! jq '.scripts.deploy=$v' --arg v 'azioncli webapp publish' >"$tmpfile" <package.json; then
         echo "Failed to update package.json deploy script"
         return 1
     fi

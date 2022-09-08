@@ -72,7 +72,7 @@ check_tools() {
 
 update_deploy_script() {
     tmpfile=$(mktemp)
-    if ! jq '.scripts.deploy=$v' --arg v 'azioncli publish' >"$tmpfile" <package.json; then
+    if ! jq '.scripts.deploy=$v' --arg v 'azioncli webapp publish' >"$tmpfile" <package.json; then
         echo "Failed to update package.json deploy script"
         return 1
     fi
