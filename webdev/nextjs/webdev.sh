@@ -70,6 +70,15 @@ check_tools() {
     return $return_value
 }
 
+update_build_script() {
+    tmpfile=$(mktemp)
+    if ! jq '.scripts.build=$v' --arg v 'next build && npx next export' >"$tmpfile" <package.json; then
+        echo "Failed to update package.json build script"
+        return 1
+    fi
+    mv $tmpfile package.json
+}
+
 update_deploy_script() {
     tmpfile=$(mktemp)
     if ! jq '.scripts.deploy=$v' --arg v 'azioncli webapp publish' >"$tmpfile" <package.json; then
@@ -114,6 +123,7 @@ case "$1" in
         check_tools || exit $?
         check_azion_framework_adapter || exit $?
         install_cells_site_template
+        update_build_script
         update_deploy_script;;
 
     build )
