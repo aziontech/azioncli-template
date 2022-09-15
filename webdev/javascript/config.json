@@ -1,10 +1,10 @@
 {
     "init": {
         "cmd": "./azion/webdev.sh init",
-        "env": ""
+        "env": "./azion/webdev.env"
     },
     "build": {
         "cmd": "./azion/webdev.sh build",
-        "env": ""
+        "env": "./azion/webdev.env"
     }
 }

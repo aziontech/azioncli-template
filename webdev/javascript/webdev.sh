@@ -5,9 +5,10 @@
 # Tools:
 # - jq
 # - npm
+# - git
 
 required_tools() {
-    echo npm jq
+    echo npm jq git
 }
 
 check_tools() {
@@ -26,7 +27,8 @@ check_requirements() {
         npm init --yes > /dev/null
     fi
 
-    mkdir -p ./worker
+    mkdir -p ${OUTPUT_DIR}
+    npm install --save-dev clean-webpack-plugin
 }
 
 update_build_script() {
@@ -67,6 +69,6 @@ case "$1" in
         update_deploy_script;;
 
     build )
-        npx --package=webpack@5.72.0 --package=webpack-cli@4.9.2 -- webpack --config ./azion/webpack.config.js -o ./worker --mode production
+        npx --package=webpack@5.72.0 -- webpack --config ./azion/webpack.config.js -o ${OUTPUT_DIR} --mode production
         echo "{}" > ./args.json;;
 esac
