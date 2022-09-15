@@ -69,6 +69,6 @@ case "$1" in
         update_deploy_script;;
 
     build )
-        npx --package=webpack@5.72.0 webpack --config ./azion/webpack.config.js -o ${OUTPUT_DIR} --mode production
+        npx --package=webpack@5.72.0 -- webpack --config ./azion/webpack.config.js -o ${OUTPUT_DIR} --mode production
         echo "{}" > ./args.json;;
 esac
