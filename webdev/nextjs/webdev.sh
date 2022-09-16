@@ -5,8 +5,8 @@
 # Requirements:
 #
 # Tools:
+# - node (16.x or higher)
 # - jq
-# - npm
 # - git
 #
 # Environment variables:
@@ -56,7 +56,7 @@ check_envvars() {
 }
 
 required_tools() {
-    echo git npm jq
+    echo git jq node
 }
 
 check_tools() {
@@ -91,6 +91,7 @@ update_deploy_script() {
 install_cells_site_template() {
     if ! (
         cd azion || exit $?
+        rm -rf cells-site-template
         git clone https://github.com/aziontech/cells-site-template.git
     ); then
         echo "Failed to clone cells-site-template";
@@ -113,6 +114,24 @@ help() {
 EOF
 }
 
+help_nextjs() {
+    cat <<EOF
+    [ General Instructions ]
+    - Requirements:
+        - Tools: $(required_tools)
+        - AWS Credentials (./azion/webdev.env): $(required_envvars) 
+        - Customize the path to static content - AWS S3 storage (.azion/kv.json)
+    
+    [ Usage ]
+    - Build Command: npm run build
+    - Publish Command: npm run deploy
+
+    [ Notes ]
+        - Node 16x or higher
+        - Only Next.js projects with Static HTML Export is supported
+EOF
+}
+
 if [ $# -lt 1 ]; then
     help
     exit 1
@@ -124,7 +143,8 @@ case "$1" in
         check_azion_framework_adapter || exit $?
         install_cells_site_template
         update_build_script
-        update_deploy_script;;
+        update_deploy_script
+        help_nextjs;;
 
     build )
         check_envvars || exit $?
