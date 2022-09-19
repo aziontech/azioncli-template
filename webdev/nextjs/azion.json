@@ -4,7 +4,7 @@
     "function": {
         "name": "__DEFAULT__",
         "file": "./azion/cells-site-template/worker/function.js",
-        "args": "./azion/cells-site-template/args.json"
+        "args": "./azion/args.json"
     },
     "application": {
         "name": "__DEFAULT__"
