@@ -150,7 +150,7 @@ case "$1" in
         check_envvars || exit $?
         check_azion_framework_adapter || exit $?
 
-        if [ -f ./azion/args.json ]; then
+        if [ ! -f ./azion/args.json ]; then
             echo "{}" > ./azion/args.json
         fi
 
