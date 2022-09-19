@@ -72,7 +72,7 @@ check_tools() {
 
 update_build_script() {
     tmpfile=$(mktemp)
-    if ! jq '.scripts.build=$v' --arg v 'next build && npx next export' >"$tmpfile" <package.json; then
+    if ! jq '.scripts.build=$v' --arg v 'azioncli webapp build' >"$tmpfile" <package.json; then
         echo "Failed to update package.json build script"
         return 1
     fi
@@ -116,6 +116,7 @@ EOF
 
 help_nextjs() {
     cat <<EOF
+
     [ General Instructions ]
     - Requirements:
         - Tools: $(required_tools)
@@ -128,7 +129,6 @@ help_nextjs() {
 
     [ Notes ]
         - Node 16x or higher
-        - Only Next.js projects with Static HTML Export is supported
 EOF
 }
 
@@ -150,8 +150,13 @@ case "$1" in
         check_envvars || exit $?
         check_azion_framework_adapter || exit $?
 
+        if [ -f ./azion/args.json ]; then
+            echo "{}" > ./azion/args.json
+        fi
+
+        npx next build  || exit $?
+        npx next export || exit $?
         cd azion/cells-site-template || exit $?
-        echo "{}" > ./args.json
         azion-framework-adapter build --config ../kv.json \
                              --static-site --assets-dir ../../out || exit $? ;;
 
