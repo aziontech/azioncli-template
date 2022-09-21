@@ -6,7 +6,7 @@ module.exports = {
     target: "webworker",
     entry: "./index.js",
     output: {
-	      clean: true,
+        globalObject: "this",
         filename: 'function.js',
         path: path.resolve(__dirname, 'worker'),
       },
