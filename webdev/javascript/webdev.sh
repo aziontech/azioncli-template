@@ -72,5 +72,5 @@ case "$1" in
         if [ ! -f ./args.json ]; then
             echo "{}" > ./args.json
         fi
-        npx --package=webpack@5.72.0 -- webpack --config ./azion/webpack.config.js -o ${OUTPUT_DIR} --mode production || exit $? ;;
+        npx --package=webpack@5.72.0 --package=webpack-cli@4.9.2 -- webpack --config ./azion/webpack.config.js -o ${OUTPUT_DIR} --mode production || exit $? ;;
 esac
