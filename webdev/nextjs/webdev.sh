@@ -38,23 +38,6 @@ install_azion_framework_adapter() {
     echo "Installed azion-framework-adapter successfully"
 }
 
-required_envvars() {
-    echo AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
-}
-
-check_envvars() {
-    return_value=0
-    for var in $(required_envvars); do
-        # Use eval since we want to get the value of the variable
-        eval "VAR=\$$var"
-        if [ -z "$VAR" ]; then
-            echo "$var variable not defined"
-            return_value=1
-        fi
-    done
-    return $return_value
-}
-
 required_tools() {
     echo git jq node
 }
@@ -147,7 +130,6 @@ case "$1" in
         help_nextjs;;
 
     build )
-        check_envvars || exit $?
         check_azion_framework_adapter || exit $?
 
         if [ ! -f ./azion/args.json ]; then
@@ -161,7 +143,6 @@ case "$1" in
                              --static-site --assets-dir ../../out || exit $? ;;
 
     publish )
-        check_envvars || exit $?
         check_azion_framework_adapter || exit $?
 
         cd azion/cells-site-template || exit $?
