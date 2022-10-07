@@ -12,7 +12,6 @@ module.exports = {
       },
     mode: "production",
     plugins: [
-      new webpack.ProgressPlugin(),
       new CleanWebpackPlugin()
       ]
    };
