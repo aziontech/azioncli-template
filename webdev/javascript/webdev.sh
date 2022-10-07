@@ -28,7 +28,8 @@ check_requirements() {
     fi
 
     mkdir -p ${OUTPUT_DIR}
-    npm install --save-dev clean-webpack-plugin
+    npm install --yes --save-dev clean-webpack-plugin
+    npm install --yes --save-dev webpack-cli@4.9.2
 }
 
 update_build_script() {
@@ -72,5 +73,5 @@ case "$1" in
         if [ ! -f ./args.json ]; then
             echo "{}" > ./args.json
         fi
-        npx --package=webpack@5.72.0 --package=webpack-cli@4.9.2 -- webpack --config ./azion/webpack.config.js -o ${OUTPUT_DIR} --mode production || exit $? ;;
+        npx --yes --package=webpack@5.72.0 --package=webpack-cli@4.9.2 -- webpack --config ./azion/webpack.config.js -o ${OUTPUT_DIR} --mode production || exit $? ;;
 esac
