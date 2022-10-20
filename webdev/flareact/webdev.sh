@@ -7,36 +7,10 @@
 # Tools:
 # - jq
 # - npm
-# - git
 #
 # Environment variables:
 # - AWS_ACCESS_KEY_ID
 # - AWS_SECRET_ACCESS_KEY
-
-check_azion_framework_adapter() {
-    if ! command -v azion-framework-adapter 2>&1 >/dev/null; then
-        mkdir -p ./azion
-        if ! install_azion_framework_adapter; then
-            echo "Failed to install azion-framework-adapter"
-            return 1
-        fi
-    else
-        echo "azion-framework-adapter already installed"
-    fi
-}
-
-install_azion_framework_adapter() {
-    echo "Installing azion-framework-adapter"
-    tmpdir=$(mktemp -d)
-    git clone https://github.com/aziontech/azion-framework-adapter.git  "$tmpdir"
-    cd "$tmpdir"
-    if ! (npm install && npm run build && npm install -g --production); then
-        echo "Failed to install azion-framework-adapter"
-        exit 1;
-    fi
-    cd -
-    echo "Installed azion-framework-adapter successfully"
-}
 
 required_envvars() {
     echo AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
@@ -56,7 +30,7 @@ check_envvars() {
 }
 
 required_tools() {
-    echo git npm jq
+    echo npm jq
 }
 
 check_tools() {
@@ -104,7 +78,6 @@ fi
 case "$1" in
     init )
         check_tools || exit $?
-        check_azion_framework_adapter || exit $?
 
         update_build_script
         update_deploy_script
@@ -112,15 +85,13 @@ case "$1" in
 
     build )
         check_envvars || exit $?
-        check_azion_framework_adapter || exit $?
         echo "{}" > ./args.json
 
-        azion-framework-adapter build --config ./azion/kv.json || exit $?;;
+        npx --yes azion-framework-adapter@0.2.0 build --config ./azion/kv.json || exit $?;;
 
     publish )
         check_envvars || exit $?
-        check_azion_framework_adapter || exit $?
 
         # Publish only assets
-        azion-framework-adapter publish -s --config ./azion/kv.json || exit $?;;
+        npx --yes azion-framework-adapter@0.2.0 publish -s --config ./azion/kv.json || exit $?;;
 esac
