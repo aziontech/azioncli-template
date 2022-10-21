@@ -13,31 +13,6 @@
 # - AWS_ACCESS_KEY_ID
 # - AWS_SECRET_ACCESS_KEY
 
-check_azion_framework_adapter() {
-    if ! command -v azion-framework-adapter 2>&1 >/dev/null; then
-        mkdir -p ./azion
-        if ! install_azion_framework_adapter; then
-            echo "Failed to install azion-framework-adapter"
-            return 1
-        fi
-    else
-        echo "azion-framework-adapter already installed"
-    fi
-}
-
-install_azion_framework_adapter() {
-    echo "Installing azion-framework-adapter"
-    tmpdir=$(mktemp -d)
-    git clone https://github.com/aziontech/azion-framework-adapter.git  "$tmpdir"
-    cd "$tmpdir"
-    if ! (npm install && npm run build && npm install -g --production); then
-        echo "Failed to install azion-framework-adapter"
-        exit 1;
-    fi
-    cd -
-    echo "Installed azion-framework-adapter successfully"
-}
-
 required_envvars() {
     echo AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
 }
@@ -68,6 +43,13 @@ check_tools() {
         fi
     done
     return $return_value
+}
+
+check_init() {
+    if [ ! -f ./azion/cells-site-template/src/index.js ] ; then
+        echo "You must initialize your webapp first."
+        exit 1
+    fi
 }
 
 update_build_script() {
@@ -140,15 +122,14 @@ fi
 case "$1" in
     init )
         check_tools || exit $?
-        check_azion_framework_adapter || exit $?
         install_cells_site_template
         update_build_script
         update_deploy_script
         help_nextjs;;
 
     build )
+        check_init || exit $?
         check_envvars || exit $?
-        check_azion_framework_adapter || exit $?
 
         if [ ! -f ./azion/args.json ]; then
             echo "{}" > ./azion/args.json
@@ -157,15 +138,15 @@ case "$1" in
         npx next build  || exit $?
         npx next export || exit $?
         cd azion/cells-site-template || exit $?
-        azion-framework-adapter build --config ../kv.json \
+        npx --yes azion-framework-adapter@0.2.0 build --config ../kv.json \
                              --static-site --assets-dir ../../out || exit $? ;;
 
     publish )
+        check_init || exit $?
         check_envvars || exit $?
-        check_azion_framework_adapter || exit $?
 
         cd azion/cells-site-template || exit $?
         # Publish only assets
-        azion-framework-adapter publish --config ../kv.json \
+        npx --yes azion-framework-adapter@0.2.0 publish --config ../kv.json \
                                --only-assets --assets-dir ../../out || exit $? ;;
 esac
