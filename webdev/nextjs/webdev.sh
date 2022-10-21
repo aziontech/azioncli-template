@@ -45,6 +45,13 @@ check_tools() {
     return $return_value
 }
 
+check_init() {
+    if [ ! -f ./azion/cells-site-template/src/index.js ] ; then
+        echo "You must initialize your webapp first."
+        exit 1
+    fi
+}
+
 update_build_script() {
     tmpfile=$(mktemp)
     if ! jq '.scripts.build=$v' --arg v 'azioncli webapp build' >"$tmpfile" <package.json; then
@@ -121,6 +128,7 @@ case "$1" in
         help_nextjs;;
 
     build )
+        check_init || exit $?
         check_envvars || exit $?
 
         if [ ! -f ./azion/args.json ]; then
@@ -134,6 +142,7 @@ case "$1" in
                              --static-site --assets-dir ../../out || exit $? ;;
 
     publish )
+        check_init || exit $?
         check_envvars || exit $?
 
         cd azion/cells-site-template || exit $?

@@ -44,6 +44,13 @@ check_tools() {
     return $return_value
 }
 
+check_init() {
+    if [ ! -f ./azion/azion.json ] ; then
+        echo "You must initialize your webapp first."
+        exit 1
+    fi
+}
+
 update_build_script() {
     tmpfile=$(mktemp)
     if ! jq '.scripts.build=$v' --arg v 'azioncli webapp build' >"$tmpfile" <package.json; then
@@ -84,12 +91,14 @@ case "$1" in
         mkdir -p public ;;
 
     build )
+        check_init || exit $?
         check_envvars || exit $?
         echo "{}" > ./args.json
 
         npx --yes azion-framework-adapter@0.2.0 build --config ./azion/kv.json || exit $?;;
 
     publish )
+        check_init || exit $?
         check_envvars || exit $?
 
         # Publish only assets
