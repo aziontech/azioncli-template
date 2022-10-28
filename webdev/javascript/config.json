@@ -1,6 +1,6 @@
 {
     "init": {
-        "cmd": "mkdir -p /home/maxwelm/Playground/azion-cli/bin/worker && npm install --yes --save-dev clean-webpack-plugin && npm install --yes --save-dev webpack-cli@4.9.2",
+        "cmd": "mkdir -p ./worker && npm install --yes --save-dev clean-webpack-plugin && npm install --yes --save-dev webpack-cli@4.9.2",
         "env": "./azion/webdev.env"
     },
     "build": {
