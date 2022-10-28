@@ -1,10 +1,10 @@
 {
     "init": {
-        "cmd": "./azion/webdev.sh init",
+        "cmd": "mkdir -p /home/maxwelm/Playground/azion-cli/bin/worker && npm install --yes --save-dev clean-webpack-plugin && npm install --yes --save-dev webpack-cli@4.9.2",
         "env": "./azion/webdev.env"
     },
     "build": {
-        "cmd": "./azion/webdev.sh build",
+        "cmd": "npx --yes --package=webpack@5.72.0 --package=webpack-cli@4.9.2 -- webpack --config ./azion/webpack.config.js -o ${OUTPUT_DIR} --mode production || exit $? ;;",
         "env": "./azion/webdev.env"
     }
 }
