@@ -4,7 +4,7 @@
         "env": "./azion/webdev.env"
     },
     "build": {
-        "cmd": "npx --yes --package=webpack@5.72.0 --package=webpack-cli@4.9.2 -- webpack --config ./azion/webpack.config.js -o ${OUTPUT_DIR} --mode production || exit $? ;;",
+        "cmd": "npx --yes --package=webpack@5.72.0 --package=webpack-cli@4.9.2 -- webpack --config ./azion/webpack.config.js -o ./worker --mode production || exit $? ;;",
         "env": "./azion/webdev.env"
     }
 }
