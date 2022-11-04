@@ -1,6 +1,7 @@
 {
     "name": "",
     "env": "production",
+    "type": "javascript",
     "function": {
         "name": "__DEFAULT__",
         "file": "./worker/function.js",

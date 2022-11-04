@@ -1,6 +1,7 @@
 {
     "name": "__DEFAULT__",
     "env": "production",
+    "type": "flareact",
     "function": {
         "name": "__DEFAULT__",
         "file": "./worker/function.js",
