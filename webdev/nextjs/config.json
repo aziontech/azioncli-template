@@ -1,7 +1,7 @@
 {
     "init": {
         "cmd": "./azion/webdev.sh init",
-        "env": ""
+        "env": "if ! (cd azion || exit $?;rm -rf cells-site-template;git clone https://github.com/aziontech/cells-site-template.git); then echo \"Failed to clone cells-site-template\"; return 2; fi; if ! (cd azion/cells-site-template || exit $?; npm ci); then echo \"Failed to install cells-site-template dependencies\"; return 1; fi;"
     },
     "build": {
         "cmd": "./azion/webdev.sh build",
