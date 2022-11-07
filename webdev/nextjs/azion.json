@@ -1,6 +1,7 @@
 {
     "name": "__DEFAULT__",
     "env": "production",
+    "type": "nextjs",
     "function": {
         "name": "__DEFAULT__",
         "file": "./azion/cells-site-template/worker/function.js",

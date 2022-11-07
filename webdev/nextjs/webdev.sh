@@ -17,57 +17,8 @@ required_envvars() {
     echo AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
 }
 
-check_envvars() {
-    return_value=0
-    for var in $(required_envvars); do
-        # Use eval since we want to get the value of the variable
-        eval "VAR=\$$var"
-        if [ -z "$VAR" ]; then
-            echo "$var variable not defined"
-            return_value=1
-        fi
-    done
-    return $return_value
-}
-
 required_tools() {
     echo git jq node
-}
-
-check_tools() {
-    return_value=0
-    for dependency in $(required_tools); do
-        if ! command -v "$dependency" 2>&1 >/dev/null; then
-            echo "$dependency not found"
-            return_value=1
-        fi
-    done
-    return $return_value
-}
-
-check_init() {
-    if [ ! -f ./azion/cells-site-template/src/index.js ] ; then
-        echo "You must initialize your webapp first."
-        exit 1
-    fi
-}
-
-update_build_script() {
-    tmpfile=$(mktemp)
-    if ! jq '.scripts.build=$v' --arg v 'azioncli webapp build' >"$tmpfile" <package.json; then
-        echo "Failed to update package.json build script"
-        return 1
-    fi
-    mv $tmpfile package.json
-}
-
-update_deploy_script() {
-    tmpfile=$(mktemp)
-    if ! jq '.scripts.deploy=$v' --arg v 'azioncli webapp publish' >"$tmpfile" <package.json; then
-        echo "Failed to update package.json deploy script"
-        return 1
-    fi
-    mv $tmpfile package.json
 }
 
 install_cells_site_template() {
@@ -96,24 +47,6 @@ help() {
 EOF
 }
 
-help_nextjs() {
-    cat <<EOF
-
-    [ General Instructions ]
-    - Requirements:
-        - Tools: $(required_tools)
-        - AWS Credentials (./azion/webdev.env): $(required_envvars) 
-        - Customize the path to static content - AWS S3 storage (.azion/kv.json)
-    
-    [ Usage ]
-    - Build Command: npm run build
-    - Publish Command: npm run deploy
-
-    [ Notes ]
-        - Node 16x or higher
-EOF
-}
-
 if [ $# -lt 1 ]; then
     help
     exit 1
@@ -121,20 +54,9 @@ fi
 
 case "$1" in
     init )
-        check_tools || exit $?
-        install_cells_site_template
-        update_build_script
-        update_deploy_script
-        help_nextjs;;
+        install_cells_site_template ;;
 
     build )
-        check_init || exit $?
-        check_envvars || exit $?
-
-        if [ ! -f ./azion/args.json ]; then
-            echo "{}" > ./azion/args.json
-        fi
-
         npx next build  || exit $?
         npx next export || exit $?
         cd azion/cells-site-template || exit $?
@@ -142,8 +64,6 @@ case "$1" in
                              --static-site --assets-dir ../../out || exit $? ;;
 
     publish )
-        check_init || exit $?
-        check_envvars || exit $?
 
         cd azion/cells-site-template || exit $?
         # Publish only assets

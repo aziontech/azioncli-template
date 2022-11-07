@@ -4,11 +4,11 @@
         "env": ""
     },
     "build": {
-        "cmd": "./azion/webdev.sh build",
+        "cmd": "npx --yes azion-framework-adapter@0.2.0 build --config ./azion/kv.json || exit $?;;",
         "env": "./azion/webdev.env"
     },
     "publish": {
-        "pre_cmd": "./azion/webdev.sh publish",
+        "pre_cmd": "npx --yes azion-framework-adapter@0.2.0 publish -s --config ./azion/kv.json || exit $?;;",
         "env":"./azion/webdev.env"
     }
 }
