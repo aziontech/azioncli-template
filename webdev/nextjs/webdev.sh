@@ -39,6 +39,13 @@ install_cells_site_template() {
     fi
 }
 
+check_init() {
+    if [ ! -f ./azion/cells-site-template/src/index.js ] ; then
+        echo "You must initialize your webapp first."
+        exit 1
+    fi
+}
+
 help() {
     cat <<EOF
     Usage: $0 init | build | publish
@@ -57,6 +64,7 @@ case "$1" in
         install_cells_site_template ;;
 
     build )
+        check_init || exit $?
         npx next build  || exit $?
         npx next export || exit $?
         cd azion/cells-site-template || exit $?
@@ -64,7 +72,7 @@ case "$1" in
                              --static-site --assets-dir ../../out || exit $? ;;
 
     publish )
-
+        check_init || exit $?
         cd azion/cells-site-template || exit $?
         # Publish only assets
         npx --yes azion-framework-adapter@0.2.0 publish --config ../kv.json \
