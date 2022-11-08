@@ -6,7 +6,6 @@
 #
 # Tools:
 # - node (16.x or higher)
-# - jq
 # - git
 #
 # Environment variables:
@@ -18,7 +17,7 @@ required_envvars() {
 }
 
 required_tools() {
-    echo git jq node
+    echo git node
 }
 
 install_cells_site_template() {
