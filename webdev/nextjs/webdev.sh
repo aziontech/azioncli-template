@@ -6,7 +6,6 @@
 #
 # Tools:
 # - node (16.x or higher)
-# - jq
 # - git
 #
 # Environment variables:
@@ -18,7 +17,7 @@ required_envvars() {
 }
 
 required_tools() {
-    echo git jq node
+    echo git node
 }
 
 install_cells_site_template() {
@@ -36,6 +35,13 @@ install_cells_site_template() {
     ); then
         echo "Failed to install cells-site-template dependencies";
         return 1
+    fi
+}
+
+check_init() {
+    if [ ! -f ./azion/cells-site-template/src/index.js ] ; then
+        echo "You must initialize your webapp first."
+        exit 1
     fi
 }
 
@@ -57,6 +63,7 @@ case "$1" in
         install_cells_site_template ;;
 
     build )
+        check_init || exit $?
         npx next build  || exit $?
         npx next export || exit $?
         cd azion/cells-site-template || exit $?
@@ -64,7 +71,7 @@ case "$1" in
                              --static-site --assets-dir ../../out || exit $? ;;
 
     publish )
-
+        check_init || exit $?
         cd azion/cells-site-template || exit $?
         # Publish only assets
         npx --yes azion-framework-adapter@0.2.0 publish --config ../kv.json \
