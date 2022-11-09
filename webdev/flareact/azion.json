@@ -5,7 +5,7 @@
     "function": {
         "name": "__DEFAULT__",
         "file": "./worker/function.js",
-        "args": "./args.json"
+        "args": "./azion/args.json"
     },
     "application": {
         "name": "__DEFAULT__"
