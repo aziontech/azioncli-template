@@ -1,7 +1,8 @@
 {
     "init": {
         "cmd": "",
-        "env": ""
+        "env": "",
+        "output-ctrl": "on-error"
     },
     "build": {
         "cmd": "npx --yes azion-framework-adapter@0.2.0 build --config ./azion/kv.json || exit $? ;",
