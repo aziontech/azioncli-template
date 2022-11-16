@@ -1,14 +1,17 @@
 {
     "init": {
         "cmd": "",
-        "env": ""
+        "env": "",
+        "output-ctrl": "on-error"
     },
     "build": {
         "cmd": "npx --yes azion-framework-adapter@0.2.0 build --config ./azion/kv.json || exit $? ;",
-        "env": "./azion/webdev.env"
+        "env": "./azion/webdev.env",
+        "output-ctrl": "on-error"
     },
     "publish": {
         "pre_cmd": "npx --yes azion-framework-adapter@0.2.0 publish -s --config ./azion/kv.json || exit $? ;",
-        "env":"./azion/webdev.env"
+        "env":"./azion/webdev.env",
+        "output-ctrl": "on-error"
     }
 }
