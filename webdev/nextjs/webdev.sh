@@ -3,8 +3,6 @@
 # Wrapper to azion-framework-adapter
 #
 # Requirements:
-#
-# Tools:
 # - node (16.x or higher)
 # - git
 #
