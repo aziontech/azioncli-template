@@ -1,17 +1,20 @@
 {
     "init": {
-        "cmd": "./azion/webdev.sh init",
+        "cmd": "",
         "env": "",
-        "output-ctrl": "on-error"
+        "output-ctrl": "on-error",
+        "default": "./azion/webdev.sh init"
     },
     "build": {
-        "cmd": "./azion/webdev.sh build",
+        "cmd": "",
         "env": "./azion/webdev.env",
-        "output-ctrl": "on-error"
+        "output-ctrl": "on-error",
+        "default": "./azion/webdev.sh build" 
     },
     "publish": {
-        "pre_cmd": "./azion/webdev.sh publish",
+        "pre_cmd": "",
         "env":"./azion/webdev.env",
-        "output-ctrl": "on-error"
+        "output-ctrl": "on-error",
+        "default": "./azion/webdev.sh publish"
     }
 }
