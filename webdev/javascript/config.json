@@ -1,12 +1,14 @@
 {
     "init": {
-        "cmd": "npm install --yes --save-dev webpack-cli@5.0.1 webpack@5.75.0 clean-webpack-plugin@4.0.0",
+        "cmd": "",
         "env": "./azion/webdev.env",
-        "output-ctrl": "on-error"
+        "output-ctrl": "on-error",
+        "default": "npm install --yes --save-dev webpack-cli@5.0.1 webpack@5.75.0 clean-webpack-plugin@4.0.0"
     },
     "build": {
-        "cmd": "npx webpack --config ./azion/webpack.config.js -o ./worker --mode production || exit $? ;",
+        "cmd": "",
         "env": "./azion/webdev.env",
-        "output-ctrl": "on-error"
+        "output-ctrl": "on-error",
+        "default": "npx webpack --config ./azion/webpack.config.js -o ./worker --mode production || exit $? ;"
     }
 }
