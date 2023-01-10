@@ -6,7 +6,7 @@
         "default": "npx --yes azion-framework-adapter@0.2.3 init -s || exit $?"
     },
     "build": {
-        "pre_cmd": "",
+        "cmd": "",
         "env": "./azion/webdev.env",
         "output-ctrl": "on-error",
         "default": "npx next build || exit $? && npx next export || exit $? && npx --yes azion-framework-adapter@0.2.3 build --config ./azion/kv.json -s -d ./out || exit $?"
