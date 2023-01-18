@@ -1,17 +1,20 @@
 {
     "init": {
-        "cmd": "./azion/webdev.sh init",
+        "cmd": "",
         "env": "",
-        "output-ctrl": "on-error"
+        "output-ctrl": "on-error",
+        "default": "npx --yes azion-framework-adapter@0.2.3 init -s || exit $?"
     },
     "build": {
-        "cmd": "./azion/webdev.sh build",
+        "cmd": "",
         "env": "./azion/webdev.env",
-        "output-ctrl": "on-error"
+        "output-ctrl": "on-error",
+        "default": "npx next build || exit $? && npx next export || exit $? && npx --yes azion-framework-adapter@0.2.3 build --config ./azion/kv.json -s -d ./out || exit $?"
     },
     "publish": {
-        "pre_cmd": "./azion/webdev.sh publish",
+        "pre_cmd": "",
         "env":"./azion/webdev.env",
-        "output-ctrl": "on-error"
+        "output-ctrl": "on-error",
+        "default": "npx --yes azion-framework-adapter@0.2.3 publish --config ./azion/kv.json -t --only-assets --assets-dir ./out || exit $?"
     }
 }
