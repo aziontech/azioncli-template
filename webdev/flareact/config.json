@@ -9,12 +9,12 @@
         "cmd": "",
         "env": "./azion/webdev.env",
         "output-ctrl": "on-error",
-        "default": "npx --yes azion-framework-adapter@0.2.0 build --config ./azion/kv.json || exit $? ;"
+        "default": "npx --yes azion-framework-adapter@0.2.3 build --config ./azion/kv.json || exit $? ;"
     },
     "publish": {
         "pre_cmd": "",
         "env":"./azion/webdev.env",
         "output-ctrl": "on-error",
-        "default": "npx --yes azion-framework-adapter@0.2.0 publish -s --config ./azion/kv.json || exit $? ;"
+        "default": "npx --yes azion-framework-adapter@0.2.3 publish -s --config ./azion/kv.json || exit $? ;"
     }
 }
