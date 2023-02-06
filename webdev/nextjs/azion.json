@@ -2,6 +2,7 @@
     "name": "__DEFAULT__",
     "env": "production",
     "type": "nextjs",
+    "version-id": "",
     "function": {
         "name": "__DEFAULT__",
         "file": "./azion/cells-site-template/worker/function.js",
