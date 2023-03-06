@@ -9,7 +9,7 @@
         "cmd": "",
         "env": "./azion/webdev.env",
         "output-ctrl": "on-error",
-        "default": "[[ $(node -v |tr -dc '0-9' | cut -c1-2) -gt 16 ]] && OPENSSL_LEGACY=--openssl-legacy-provider; NODE_OPTIONS=$OPENSSL_LEGACY npx --yes azion-framework-adapter@0.2.3 build --config ./azion/kv.json || exit $? ;"
+        "default": "[[ $(node -v |tr -dc '0-9' | cut -c1-2) -gt 16 ]] && OPENSSL_LEGACY=--openssl-legacy-provider; NODE_OPTIONS=$OPENSSL_LEGACY npx --yes azion-framework-adapter@0.2.3 build --config ./azion/kv.json --version-id %s || exit $? ;"
     },
     "publish": {
         "pre_cmd": "",
