@@ -5,7 +5,7 @@
     "version-id": "",
     "function": {
         "name": "__DEFAULT__",
-        "file": "./azion/cells-site-template/worker/function.js",
+        "file": "./out/worker.js",
         "args": "./azion/args.json"
     },
     "application": {
