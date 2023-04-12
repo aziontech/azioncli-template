@@ -1,20 +1,8 @@
 {
-    "init": {
-        "cmd": "",
-        "env": "",
-        "output-ctrl": "on-error",
-        "default": ""
-    },
     "build": {
         "cmd": "",
         "env": "./azion/webdev.env",
         "output-ctrl": "on-error",
-        "default": "[[ $(node -v |tr -dc '0-9' | cut -c1-2) -gt 16 ]] && OPENSSL_LEGACY=--openssl-legacy-provider; NODE_OPTIONS=$OPENSSL_LEGACY npx --yes azion-framework-adapter@0.3.0-alpha.0 build --version-id %s --config ./azion/kv.json || exit $?"
-    },
-    "publish": {
-        "pre_cmd": "",
-        "env":"./azion/webdev.env",
-        "output-ctrl": "on-error",
-        "default": "npx --yes azion-framework-adapter@0.2.3 publish --config ./azion/kv.json -t --only-assets --assets-dir ./out || exit $?"
-    }
+        "default": "npx --yes azion-framework-adapter@0.3.1 build --version-id %s || exit $?"
+   }
 }

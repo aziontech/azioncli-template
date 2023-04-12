@@ -1,7 +1,0 @@
-{
-  "kv": {
-    "bucket": "azion-cells-dev",
-    "region": "us-east-1",
-    "path": "__static_content"
-  }
-}
