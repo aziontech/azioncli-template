@@ -2,7 +2,7 @@
   "name": "__DEFAULT__",
   "env": "production",
   "type": "static",
-  "version-id": "20230511071808",
+  "version-id": "",
   "domain": {
     "id": 0,
     "name": "__DEFAULT__"
