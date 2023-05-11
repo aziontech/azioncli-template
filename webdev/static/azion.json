@@ -1,0 +1,20 @@
+{
+  "name": "__DEFAULT__",
+  "env": "production",
+  "type": "static",
+  "version-id": "20230511071808",
+  "domain": {
+    "id": 0,
+    "name": "__DEFAULT__"
+  },
+  "application": {
+    "id": 0,
+    "name": "__DEFAULT__"
+  },
+  "function": {
+    "id": 0,
+    "name": "__DEFAULT__",
+    "file": "",
+    "args": ""
+  }
+}
