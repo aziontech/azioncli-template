@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-self.__PROJECT_TYPE_PATTERN = "{{ .pathFull }}";
+self.__PROJECT_TYPE_PATTERN = "PROJECT_TYPE:STATIC_SITE";
 
 addEventListener('fetch', event => {
     event.respondWith(handleEvent(event))
