@@ -13,7 +13,7 @@
   },
   "origin": {
     "name": "__DEFAULT__",
-    "address": ""
+    "address": [""]
 },
   "function": {
     "id": 0,
