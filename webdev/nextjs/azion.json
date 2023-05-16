@@ -11,6 +11,10 @@
     "application": {
         "name": "__DEFAULT__"
     },
+    "origin": {
+        "name": "__DEFAULT__",
+        "address": ""
+    },
     "domain": {
         "name": "__DEFAULT__"
     },
