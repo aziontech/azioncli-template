@@ -18,6 +18,6 @@
         "id": 0,
         "name": "__DEFAULT__",
         "file": "",
-        "args": ""
+        "args": "./azion/args.json"
     }
 }
