@@ -1,14 +1,18 @@
 {
     "name": "__DEFAULT__",
     "env": "production",
-    "type": "flareact",
+    "type": "",
+    "mode": "",
     "version-id": "",
     "function": {
         "name": "__DEFAULT__",
-        "file": "./worker/function.js",
+        "file": ".edge/worker.js",
         "args": "./azion/args.json"
     },
     "application": {
+        "name": "__DEFAULT__"
+    },
+    "origin": {
         "name": "__DEFAULT__"
     },
     "domain": {
