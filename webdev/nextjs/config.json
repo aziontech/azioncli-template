@@ -3,6 +3,6 @@
         "cmd": "",
         "env": "./azion/webdev.env",
         "output-ctrl": "on-error",
-        "default": "npx --yes azion-framework-adapter@0.3.1 build --version-id %s || exit $?"
+        "default": "npx --yes azion-framework-adapter@0.4.0 build --version-id %s || exit $?"
    }
 }
